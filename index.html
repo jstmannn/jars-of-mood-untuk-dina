@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jars of Mood — Untuk Dina ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #5b9bd5;
+    --blue-dark: #2d5f8a;
+    --blue-light: #a8cce8;
+    --pink: #e05a8a;
+    --pink-soft: #f0a0c0;
+    --pink-light: #fce4ef;
+    --purple: #7c5cbf;
+    --purple-soft: #b8a0e0;
+    --orange: #e87830;
+    --orange-soft: #f4b080;
+    --black-soft: #1a1228;
+    --cream: #fdf6ee;
+    --gold: #d4a843;
+    --text-dark: #2a1a3a;
+    --text-mid: #5a4a6a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lora', serif;
+    background: #f8f0fa;
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 1.2s ease;
+    position: relative;
+  }
+
+  /* ===== BACKGROUND THEMES ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 15% 10%, rgba(91,155,213,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 5%, rgba(224,90,138,0.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 95%, rgba(124,92,191,0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+    transition: all 1.2s ease;
+  }
+
+  body.mood-marah::before {
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(224,90,138,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 60%, rgba(232,120,48,0.20) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(180,50,80,0.15) 0%, transparent 50%);
+  }
+  body.mood-marah { background: #fff0f4; }
+
+  body.mood-bahagia::before {
+    background: 
+      radial-gradient(ellipse at 30% 10%, rgba(212,168,67,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 40%, rgba(224,90,138,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 90%, rgba(91,155,213,0.15) 0%, transparent 50%);
+  }
+  body.mood-bahagia { background: #fffdf0; }
+
+  body.mood-sedih::before {
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(91,155,213,0.30) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 70%, rgba(124,92,191,0.20) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(45,95,138,0.15) 0%, transparent 50%);
+  }
+  body.mood-sedih { background: #f0f4ff; }
+
+  body.mood-capek::before {
+    background: 
+      radial-gradient(ellipse at 30% 20%, rgba(124,92,191,0.20) 0%, transparent 60%),
+      radial-gradient(ellipse at 75% 60%, rgba(91,155,213,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 95%, rgba(180,160,220,0.15) 0%, transparent 50%);
+  }
+  body.mood-capek { background: #f4f0ff; }
+
+  /* ===== DECORATIVE ELEMENTS ===== */
+  .deco-top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--pink), var(--purple), var(--orange), var(--blue));
+    background-size: 200% 100%;
+    animation: gradientSlide 6s linear infinite;
+    z-index: 100;
+  }
+
+  @keyframes gradientSlide {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Floating bokeh */
+  .bokeh-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .bokeh {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: bokehFloat var(--dur) ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes bokehFloat {
+    0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+    20%, 80% { opacity: var(--op); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    text-align: center;
+    padding: 70px 20px 10px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .header-tag {
+    display: inline-block;
+    font-family: 'Sacramento', cursive;
+    font-size: 1.3rem;
+    color: var(--pink);
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 7vw, 4.8rem);
+    font-weight: 700;
+    color: var(--black-soft);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    margin-top: 12px;
+    opacity: 0.8;
+  }
+
+  /* book references bar */
+  .book-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 18px auto 0;
+    max-width: 700px;
+    padding: 0 20px;
+  }
+
+  .book-pill {
+    font-family: 'Lora', serif;
+    font-size: 0.65rem;
+    font-style: italic;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid;
+    color: var(--text-mid);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+  .book-pill:hover { opacity: 1; }
+  .bp-blue { border-color: var(--blue); color: var(--blue-dark); }
+  .bp-pink { border-color: var(--pink); color: var(--pink); }
+  .bp-purple { border-color: var(--purple); color: var(--purple); }
+  .bp-orange { border-color: var(--orange); color: var(--orange); }
+
+  /* ===== INSTRUCTION ===== */
+  .instruction {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    margin: 30px 0 5px;
+    opacity: 0.7;
+    z-index: 10;
+    position: relative;
+  }
+
+  /* ===== JARS SECTION ===== */
+  .jars-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: clamp(16px, 4vw, 50px);
+    padding: 30px 20px 50px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 10;
+  }
+
+  .jar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .jar-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    opacity: 0.7;
+    transition: opacity 0.3s, color 0.3s;
+  }
+
+  .jar-mood-icon {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    line-height: 1;
+  }
+
+  .jar-svg-wrap {
+    position: relative;
+    width: clamp(95px, 14vw, 135px);
+    animation: gentleFloat 5s ease-in-out infinite;
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.08));
+  }
+
+  .jar-wrapper:nth-child(2) .jar-svg-wrap { animation-delay: -1.2s; }
+  .jar-wrapper:nth-child(3) .jar-svg-wrap { animation-delay: -2.5s; }
+  .jar-wrapper:nth-child(4) .jar-svg-wrap { animation-delay: -3.8s; }
+
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px) rotate(-1deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+
+  .jar-wrapper:hover .jar-svg-wrap {
+    transform: translateY(-14px) scale(1.06) rotate(0deg) !important;
+    animation-play-state: paused;
+  }
+
+  .jar-wrapper:hover .jar-mood-icon { transform: scale(1.25) rotate(-8deg); }
+  .jar-wrapper:hover .jar-label { opacity: 1; }
+
+  /* Jar hover glow */
+  .jar-wrapper.jar-marah:hover .jar-svg-wrap { filter: drop-shadow(0 12px 28px rgba(224,90,138,0.35)); }
+  .jar-wrapper.jar-bahagia:hover .jar-svg-wrap { filter: drop-shadow(0 12px 28px rgba(212,168,67,0.35)); }
+  .jar-wrapper.jar-sedih:hover .jar-svg-wrap { filter: drop-shadow(0 12px 28px rgba(91,155,213,0.40)); }
+  .jar-wrapper.jar-capek:hover .jar-svg-wrap { filter: drop-shadow(0 12px 28px rgba(124,92,191,0.35)); }
+
+  /* ===== PARTICLES ===== */
+  #particles {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+  }
+  .particle {
+    position: absolute; border-radius: 50%; opacity: 0;
+    animation: floatUp var(--dur) ease-in forwards;
+  }
+  @keyframes floatUp {
+    0% { opacity: 0.9; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-90vh) scale(0.2); }
+  }
+
+  /* ===== MESSAGE OVERLAY ===== */
+  #message-overlay {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.5s ease;
+    padding: 20px;
+  }
+
+  #message-overlay.active {
+    opacity: 1; pointer-events: all;
+  }
+
+  .overlay-backdrop {
+    position: absolute; inset: 0;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(248,240,250,0.75);
+    transition: all 0.5s ease;
+  }
+
+  body.mood-marah .overlay-backdrop { background: rgba(255,240,244,0.80); }
+  body.mood-bahagia .overlay-backdrop { background: rgba(255,253,240,0.80); }
+  body.mood-sedih .overlay-backdrop { background: rgba(240,244,255,0.80); }
+  body.mood-capek .overlay-backdrop { background: rgba(244,240,255,0.80); }
+
+  /* ===== MESSAGE CARD ===== */
+  .message-card {
+    position: relative;
+    max-width: 560px; width: 100%;
+    background: white;
+    border-radius: 24px;
+    padding: clamp(28px, 6vw, 48px);
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+    transform: translateY(30px) scale(0.95);
+    transition: transform 0.65s cubic-bezier(0.34,1.56,0.64,1);
+    border: 1px solid rgba(255,255,255,0.8);
+    z-index: 1;
+  }
+
+  #message-overlay.active .message-card {
+    transform: translateY(0) scale(1);
+  }
+
+  /* Card top accent */
+  .card-accent {
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 5px;
+    border-radius: 24px 24px 0 0;
+    background: var(--card-color, linear-gradient(90deg, var(--pink), var(--purple)));
+    transition: background 0.5s ease;
+  }
+
+  .card-deco-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    line-height: 0.8;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.5s ease;
+    color: var(--mood-accent, var(--pink));
+    opacity: 0.15;
+  }
+
+  .card-mood-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--mood-accent, var(--pink));
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    transition: background 0.5s ease;
+  }
+
+  .message-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+  }
+
+  .message-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 18px 0;
+  }
+  .message-divider::before, .message-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+  }
+  .message-divider span {
+    font-size: 0.7rem;
+    color: var(--mood-accent, var(--pink));
+    opacity: 0.6;
+  }
+
+  .message-source {
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    font-style: italic;
+    margin-bottom: 24px;
+    opacity: 0.75;
+    line-height: 1.5;
+  }
+
+  .message-source strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--mood-accent, var(--pink));
+  }
+
+  .message-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: var(--mood-accent, var(--pink));
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    filter: brightness(1.08);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-mid);
+    border: 1px solid rgba(0,0,0,0.12);
+  }
+  .btn-secondary:hover {
+    background: rgba(0,0,0,0.04);
+    transform: translateY(-1px);
+  }
+
+  /* ===== SPARKLE EFFECT ===== */
+  .sparkle {
+    position: fixed; pointer-events: none; z-index: 300;
+    animation: sparkleOut 0.9s ease forwards;
+    border-radius: 50%;
+  }
+  @keyframes sparkleOut {
+    0% { transform: translate(0,0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--tx),var(--ty)) scale(0); opacity: 0; }
+  }
+
+  /* Star sparkle */
+  .sparkle-star {
+    width: 8px; height: 8px;
+    background: none;
+    border-radius: 0;
+    font-size: 12px;
+    line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ===== FLOAT WORDS ===== */
+  .float-word {
+    position: fixed; pointer-events: none; z-index: 5;
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 0.75rem; opacity: 0;
+    animation: floatWord 3.5s ease forwards;
+    white-space: nowrap;
+  }
+  @keyframes floatWord {
+    0% { opacity: 0; transform: translateY(0) scale(0.8); }
+    15% { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(-90px) scale(1.1); }
+  }
+
+  /* ===== RIBBON EFFECT ===== */
+  .ribbon {
+    position: fixed; top: 4px; left: -100%;
+    width: 100%; height: 2px;
+    z-index: 101; pointer-events: none;
+    animation: ribbonSlide 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  @keyframes ribbonSlide {
+    0% { left: -100%; opacity: 0.8; }
+    100% { left: 100%; opacity: 0; }
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 30px 20px 50px;
+    position: relative; z-index: 10;
+    font-family: 'Sacramento', cursive;
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    opacity: 0.6;
+  }
+
+  /* ===== MUSIC PLAYER — floating minimalis ===== */
+  #music-player {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  /* Tooltip lagu */
+  .music-tooltip {
+    background: white;
+    border-radius: 50px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    white-space: nowrap;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .music-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
+
+  .tooltip-song {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--text-dark);
+  }
+
+  .tooltip-artist {
+    font-family: 'Lora', serif;
+    font-size: 0.68rem;
+    color: var(--text-mid);
+    opacity: 0.7;
+  }
+
+  .tooltip-divider {
+    width: 1px; height: 24px;
+    background: rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  /* Volume slider inside tooltip */
+  .tooltip-vol {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .tooltip-vol-icon {
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--text-mid);
+    transition: transform 0.2s;
+    user-select: none;
+  }
+  .tooltip-vol-icon:hover { transform: scale(1.2); }
+
+  .tooltip-vol-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 60px; height: 3px;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.1);
+    outline: none;
+    cursor: pointer;
+  }
+  .tooltip-vol-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--pink);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .tooltip-vol-slider::-webkit-slider-thumb:hover { transform: scale(1.3); }
+
+  /* Main floating button */
+  .music-fab {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.08);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .music-fab::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 50%;
+  }
+
+  .music-fab:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+  .music-fab:active { transform: scale(0.96); }
+
+  /* Eq bars inside FAB */
+  .fab-eq {
+    display: flex; align-items: flex-end; gap: 2.5px;
+    height: 18px; position: relative; z-index: 1;
+  }
+
+  .fab-eq-bar {
+    width: 3px; border-radius: 2px;
+    background: var(--text-mid);
+    transition: background 0.4s ease, height 0.3s ease;
+    animation: eqAnim var(--spd) ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+
+  .fab-eq-bar:nth-child(1) { height: 6px;  --spd: 0.48s; }
+  .fab-eq-bar:nth-child(2) { height: 13px; --spd: 0.65s; animation-delay: 0.08s; }
+  .fab-eq-bar:nth-child(3) { height: 8px;  --spd: 0.38s; animation-delay: 0.18s; }
+  .fab-eq-bar:nth-child(4) { height: 15px; --spd: 0.55s; animation-delay: 0.04s; }
+  .fab-eq-bar:nth-child(5) { height: 5px;  --spd: 0.52s; animation-delay: 0.12s; }
+
+  @keyframes eqAnim {
+    from { transform: scaleY(0.25); }
+    to   { transform: scaleY(1); }
+  }
+
+  /* Playing state */
+  .music-fab.playing::before { opacity: 1; }
+  .music-fab.playing .fab-eq-bar {
+    background: white;
+    animation-play-state: running;
+  }
+
+  /* Pulse ring when playing */
+  .music-fab.playing::after {
+    content: '';
+    position: absolute; inset: -5px;
+    border-radius: 50%;
+    border: 2px solid var(--pink);
+    animation: pulseRing 2s ease-in-out infinite;
+    opacity: 0;
+  }
+
+  @keyframes pulseRing {
+    0%   { transform: scale(0.9); opacity: 0.5; }
+    100% { transform: scale(1.45); opacity: 0; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 480px) {
+    .jars-section { gap: 12px; padding: 20px 8px 40px; }
+    .book-bar { gap: 5px; }
+    .book-pill { font-size: 0.55rem; padding: 3px 8px; }
+    .message-card { padding: 28px 22px; }
+    .message-text { font-size: 1.05rem; }
+    #music-player { bottom: 18px; right: 18px; }
+    .music-tooltip { max-width: 220px; }
+    .tooltip-vol-slider { width: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deco-top"></div>
+<div id="particles"></div>
+
+<!-- BOKEH BACKGROUND -->
+<div class="bokeh-container" id="bokehContainer"></div>
+
+<!-- HEADER -->
+<header>
+  <span class="header-tag">untuk Dina, dengan sepenuh hati ✨</span>
+  <h1>Jars of <em>Mood</em></h1>
+  <p class="header-subtitle">— kata-kata yang kamu butuhkan, tersimpan rapi dalam toples kecil ini —</p>
+
+  <div class="book-bar">
+    <span class="book-pill bp-pink">HTS Tunangan</span>
+    <span class="book-pill bp-blue">Malioboro at Midnight</span>
+    <span class="book-pill bp-purple">Jetik Mahessa</span>
+    <span class="book-pill bp-orange">The Perfect Rival</span>
+    <span class="book-pill bp-pink">Hello Cello</span>
+    <span class="book-pill bp-blue">Agaskar</span>
+    <span class="book-pill bp-purple">Seporsi Mie Ayam Sebelum Mati</span>
+  </div>
+</header>
+
+<p class="instruction">— pilih toplesmu sesuai perasaan hari ini —</p>
+
+<!-- JARS SECTION -->
+<section class="jars-section">
+
+  <!-- 🔴 MARAH — pink/merah seperti cover novel Dina -->
+  <div class="jar-wrapper jar-marah" onclick="openJar('marah', event)">
+    <div class="jar-mood-icon">🔴</div>
+    <div class="jar-svg-wrap">
+      <svg viewBox="0 0 130 175" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <defs>
+          <linearGradient id="jarBodyMarah" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f9c8d8"/>
+            <stop offset="60%" stop-color="#f0a0c0"/>
+            <stop offset="100%" stop-color="#e06090"/>
+          </linearGradient>
+          <linearGradient id="lidMarah" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#c84070"/>
+            <stop offset="100%" stop-color="#a02858"/>
+          </linearGradient>
+          <linearGradient id="liquidMarah" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#e87098" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#c03060" stop-opacity="0.9"/>
+          </linearGradient>
+          <radialGradient id="shineMarah" cx="30%" cy="25%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+          <filter id="glowMarah">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+          </filter>
+          <clipPath id="jarClipMarah">
+            <path d="M25 38 Q20 55 19 90 Q18 145 65 150 Q112 145 111 90 Q110 55 105 38 Z"/>
+          </clipPath>
+        </defs>
+        <!-- Lid -->
+        <rect x="36" y="16" width="58" height="8" rx="3" fill="url(#lidMarah)" opacity="0.9"/>
+        <rect x="30" y="22" width="70" height="18" rx="5" fill="url(#lidMarah)"/>
+        <!-- Jar body -->
+        <path d="M25 38 Q20 55 19 90 Q18 145 65 150 Q112 145 111 90 Q110 55 105 38 Z" fill="url(#jarBodyMarah)" opacity="0.92"/>
+        <!-- Liquid fill -->
+        <path d="M19 105 Q18 130 19 140 Q22 152 65 155 Q108 152 111 140 Q112 130 111 105 Z" fill="url(#liquidMarah)" clip-path="url(#jarClipMarah)"/>
+        <!-- Bubbles -->
+        <circle cx="42" cy="125" r="4" fill="rgba(255,255,255,0.35)" clip-path="url(#jarClipMarah)"/>
+        <circle cx="80" cy="118" r="3" fill="rgba(255,255,255,0.30)" clip-path="url(#jarClipMarah)"/>
+        <circle cx="60" cy="138" r="5" fill="rgba(255,255,255,0.25)" clip-path="url(#jarClipMarah)"/>
+        <circle cx="95" cy="130" r="2.5" fill="rgba(255,255,255,0.25)" clip-path="url(#jarClipMarah)"/>
+        <!-- Shine -->
+        <ellipse cx="42" cy="72" rx="14" ry="28" fill="url(#shineMarah)"/>
+        <!-- Glass edge -->
+        <path d="M25 38 Q20 55 19 90 Q18 130 25 145" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Label -->
+        <rect x="34" y="68" width="62" height="38" rx="8" fill="rgba(255,255,255,0.7)" stroke="rgba(200,64,112,0.3)" stroke-width="1"/>
+        <text x="65" y="82" text-anchor="middle" font-family="'Playfair Display', serif" font-style="italic" font-size="8" fill="#c84070">marah</text>
+        <text x="65" y="97" text-anchor="middle" font-family="serif" font-size="5.5" fill="rgba(200,64,112,0.6)">✦ klik aku ✦</text>
+        <!-- Heart deco -->
+        <text x="65" y="55" text-anchor="middle" font-size="10" opacity="0.5">♥</text>
+      </svg>
+    </div>
+    <span class="jar-label">Marah</span>
+  </div>
+
+  <!-- 💛 BAHAGIA — kuning emas hangat -->
+  <div class="jar-wrapper jar-bahagia" onclick="openJar('bahagia', event)">
+    <div class="jar-mood-icon">💛</div>
+    <div class="jar-svg-wrap">
+      <svg viewBox="0 0 130 175" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <defs>
+          <linearGradient id="jarBodyBahagia" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff3c0"/>
+            <stop offset="60%" stop-color="#f8d870"/>
+            <stop offset="100%" stop-color="#e8a820"/>
+          </linearGradient>
+          <linearGradient id="lidBahagia" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#d49030"/>
+            <stop offset="100%" stop-color="#b07020"/>
+          </linearGradient>
+          <linearGradient id="liquidBahagia" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#f8c840" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#d48000" stop-opacity="0.9"/>
+          </linearGradient>
+          <radialGradient id="shineBahagia" cx="30%" cy="25%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.60)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+          <clipPath id="jarClipBahagia">
+            <path d="M25 38 Q20 55 19 90 Q18 145 65 150 Q112 145 111 90 Q110 55 105 38 Z"/>
+          </clipPath>
+        </defs>
+        <rect x="36" y="16" width="58" height="8" rx="3" fill="url(#lidBahagia)" opacity="0.9"/>
+        <rect x="30" y="22" width="70" height="18" rx="5" fill="url(#lidBahagia)"/>
+        <path d="M25 38 Q20 55 19 90 Q18 145 65 150 Q112 145 111 90 Q110 55 105 38 Z" fill="url(#jarBodyBahagia)" opacity="0.92"/>
+        <path d="M19 100 Q18 130 19 140 Q22 152 65 155 Q108 152 111 140 Q112 130 111 100 Z" fill="url(#liquidBahagia)" clip-path="url(#jarClipBahagia)"/>
+        <!-- Stars in liquid -->
+        <text x="42" y="132" font-size="8" fill="rgba(255,255,255,0.6)" clip-path="url(#jarClipBahagia)">★</text>
+        <text x="72" y="120" font-size="6" fill="rgba(255,255,255,0.5)" clip-path="url(#jarClipBahagia)">★</text>
+        <text x="88" y="138" font-size="7" fill="rgba(255,255,255,0.45)" clip-path="url(#jarClipBahagia)">✦</text>
+        <ellipse cx="42" cy="72" rx="14" ry="28" fill="url(#shineBahagia)"/>
+        <path d="M25 38 Q20 55 19 90 Q18 130 25 145" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="34" y="68" width="62" height="38" rx="8" fill="rgba(255,255,255,0.72)" stroke="rgba(200,150,30,0.3)" stroke-width="1"/>
+        <text x="65" y="82" text-anchor="middle" font-family="'Playfair Display', serif" font-style="italic" font-size="8" fill="#c08020">bahagia</text>
+        <text x="65" y="97" text-anchor="middle" font-family="serif" font-size="5.5" fill="rgba(200,150,30,0.6)">✦ klik aku ✦</text>
+        <text x="65" y="55" text-anchor="middle" font-size="10" opacity="0.5">☀</text>
+      </svg>
+    </div>
+    <span class="jar-label">Bahagia</span>
+  </div>
+
+  <!-- 💙 SEDIH — biru langit seperti sweater Dina -->
+  <div class="jar-wrapper jar-sedih" onclick="openJar('sedih', event)">
+    <div class="jar-mood-icon">💙</div>
+    <div class="jar-svg-wrap">
+      <svg viewBox="0 0 130 175" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <defs>
+          <linearGradient id="jarBodySedih" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#c8e0f8"/>
+            <stop offset="60%" stop-color="#90c0e8"/>
+            <stop offset="100%" stop-color="#4a88c8"/>
+          </linearGradient>
+          <linearGradient id="lidSedih" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#3870b0"/>
+            <stop offset="100%" stop-color="#245090"/>
+          </linearGradient>
+          <linearGradient id="liquidSedih" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#60a0e0" stop-opacity="0.65"/>
+            <stop offset="100%" stop-color="#2060a0" stop-opacity="0.9"/>
+          </linearGradient>
+          <radialGradient id="shineSedih" cx="30%" cy="25%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.60)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+          <clipPath id="jarClipSedih">
+            <path d="M25 38 Q20 55 19 90 Q18 145 65 150 Q112 145 111 90 Q110 55 105 38 Z"/>
+          </clipPath>
+        </defs>
+        <rect x="36" y="16" width="58" height="8" rx="3" fill="url(#lidSedih)" opacity="0.9"/>
+        <rect x="30" y="22" width="70" height="18" rx="5" fill="url(#lidSedih)"/>
+        <path d="M25 38 Q20 55 19 90 Q18 145 65 150 Q112 145 111 90 Q110 55 105 38 Z" fill="url(#jarBodySedih)" opacity="0.92"/>
+        <path d="M19 95 Q18 125 19 140 Q22 152 65 155 Q108 152 111 140 Q112 125 111 95 Z" fill="url(#liquidSedih)" clip-path="url(#jarClipSedih)"/>
+        <!-- Rain drops inside -->
+        <line x1="48" y1="50" x2="46" y2="65" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" clip-path="url(#jarClipSedih)"/>
+        <line x1="65" y1="46" x2="63" y2="60" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" clip-path="url(#jarClipSedih)"/>
+        <line x1="82" y1="52" x2="80" y2="65" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" clip-path="url(#jarClipSedih)"/>
+        <circle cx="48" cy="68" r="2.5" fill="rgba(255,255,255,0.4)" clip-path="url(#jarClipSedih)"/>
+        <circle cx="65" cy="63" r="2.5" fill="rgba(255,255,255,0.35)" clip-path="url(#jarClipSedih)"/>
+        <circle cx="82" cy="67" r="2.5" fill="rgba(255,255,255,0.35)" clip-path="url(#jarClipSedih)"/>
+        <ellipse cx="42" cy="72" rx="14" ry="28" fill="url(#shineSedih)"/>
+        <path d="M25 38 Q20 55 19 90 Q18 130 25 145" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="34" y="68" width="62" height="38" rx="8" fill="rgba(255,255,255,0.70)" stroke="rgba(60,112,180,0.3)" stroke-width="1"/>
+        <text x="65" y="82" text-anchor="middle" font-family="'Playfair Display', serif" font-style="italic" font-size="8" fill="#2c6090">sedih</text>
+        <text x="65" y="97" text-anchor="middle" font-family="serif" font-size="5.5" fill="rgba(60,120,180,0.6)">✦ klik aku ✦</text>
+        <text x="65" y="55" text-anchor="middle" font-size="10" opacity="0.45">🌙</text>
+      </svg>
+    </div>
+    <span class="jar-label">Sedih</span>
+  </div>
+
+  <!-- 🤍 CAPEK — ungu lavender soft -->
+  <div class="jar-wrapper jar-capek" onclick="openJar('capek', event)">
+    <div class="jar-mood-icon">🤍</div>
+    <div class="jar-svg-wrap">
+      <svg viewBox="0 0 130 175" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <defs>
+          <linearGradient id="jarBodyCapek" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#e8e0f8"/>
+            <stop offset="60%" stop-color="#c8b8f0"/>
+            <stop offset="100%" stop-color="#9878d8"/>
+          </linearGradient>
+          <linearGradient id="lidCapek" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#7050b8"/>
+            <stop offset="100%" stop-color="#503890"/>
+          </linearGradient>
+          <linearGradient id="liquidCapek" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#a888e0" stop-opacity="0.65"/>
+            <stop offset="100%" stop-color="#6040b0" stop-opacity="0.9"/>
+          </linearGradient>
+          <radialGradient id="shineCapek" cx="30%" cy="25%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+          <clipPath id="jarClipCapek">
+            <path d="M25 38 Q20 55 19 90 Q18 145 65 150 Q112 145 111 90 Q110 55 105 38 Z"/>
+          </clipPath>
+        </defs>
+        <rect x="36" y="16" width="58" height="8" rx="3" fill="url(#lidCapek)" opacity="0.9"/>
+        <rect x="30" y="22" width="70" height="18" rx="5" fill="url(#lidCapek)"/>
+        <path d="M25 38 Q20 55 19 90 Q18 145 65 150 Q112 145 111 90 Q110 55 105 38 Z" fill="url(#jarBodyCapek)" opacity="0.92"/>
+        <path d="M19 108 Q18 130 19 140 Q22 152 65 155 Q108 152 111 140 Q112 130 111 108 Z" fill="url(#liquidCapek)" clip-path="url(#jarClipCapek)"/>
+        <!-- Zzz in liquid/jar -->
+        <text x="48" y="60" font-family="serif" font-size="8" fill="rgba(160,136,224,0.5)" font-style="italic">z</text>
+        <text x="62" y="53" font-family="serif" font-size="10" fill="rgba(160,136,224,0.4)" font-style="italic">z</text>
+        <text x="78" y="57" font-family="serif" font-size="7" fill="rgba(160,136,224,0.4)" font-style="italic">z</text>
+        <ellipse cx="42" cy="72" rx="14" ry="28" fill="url(#shineCapek)"/>
+        <path d="M25 38 Q20 55 19 90 Q18 130 25 145" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="34" y="68" width="62" height="38" rx="8" fill="rgba(255,255,255,0.70)" stroke="rgba(112,80,184,0.3)" stroke-width="1"/>
+        <text x="65" y="82" text-anchor="middle" font-family="'Playfair Display', serif" font-style="italic" font-size="8" fill="#6040a8">capek</text>
+        <text x="65" y="97" text-anchor="middle" font-family="serif" font-size="5.5" fill="rgba(112,80,184,0.6)">✦ klik aku ✦</text>
+        <text x="65" y="52" text-anchor="middle" font-size="9" opacity="0.5">☁</text>
+      </svg>
+    </div>
+    <span class="jar-label">Capek</span>
+  </div>
+
+</section>
+
+<!-- MESSAGE OVERLAY -->
+<div id="message-overlay">
+  <div class="overlay-backdrop" onclick="closeOverlay()"></div>
+  <div class="message-card">
+    <div class="card-accent" id="card-accent"></div>
+    <span class="card-deco-quote" id="card-deco">"</span>
+    <div class="card-mood-tag" id="card-mood-tag">
+      <span id="mood-tag-icon"></span>
+      <span id="mood-tag-text"></span>
+    </div>
+    <p class="message-text" id="msg-text"></p>
+    <div class="message-divider"><span>✦</span></div>
+    <p class="message-source" id="msg-source"></p>
+    <div class="message-actions">
+      <button class="btn btn-primary" id="btn-next" onclick="nextMessage()">✦ ambil lagi</button>
+      <button class="btn btn-secondary" onclick="closeOverlay()">tutup</button>
+    </div>
+  </div>
+</div>
+
+<!-- AUDIO -->
+<audio id="bg-audio" loop preload="auto">
+  <source src="assets/here-with-me.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MUSIC PLAYER — floating minimalis -->
+<div id="music-player">
+  <!-- Tooltip info + volume -->
+  <div class="music-tooltip" id="music-tooltip">
+    <div>
+      <p class="tooltip-song">Here With Me</p>
+      <p class="tooltip-artist">d4vd</p>
+    </div>
+    <div class="tooltip-divider"></div>
+    <div class="tooltip-vol">
+      <span class="tooltip-vol-icon" id="vol-icon" onclick="toggleMute()">🔊</span>
+      <input type="range" class="tooltip-vol-slider" id="vol-slider" min="0" max="100" value="70" oninput="setVolume(this.value)">
+    </div>
+  </div>
+
+  <!-- FAB button -->
+  <button class="music-fab" id="music-fab" onclick="togglePlay()" title="Play / Pause Here With Me">
+    <div class="fab-eq">
+      <div class="fab-eq-bar"></div>
+      <div class="fab-eq-bar"></div>
+      <div class="fab-eq-bar"></div>
+      <div class="fab-eq-bar"></div>
+      <div class="fab-eq-bar"></div>
+    </div>
+  </button>
+</div>
+
+<footer>dibuat dengan jiwa yang ingin kembali percaya akan kata cinta untuk Dina ✨ 
+<script>
+// ===== DATA MESSAGES =====
+// Terinspirasi dari buku-buku koleksi Dina + gaya novel romantis Indonesia
+const messages = {
+  marah: [
+    {
+      text: "Amarahmu itu nyata, Dina. Dan kamu tidak perlu minta maaf untuk sesuatu yang nyata. Rasakan ia — lalu lepaskan, pelan-pelan, seperti menutup buku yang ceritanya sudah sampai di halaman akhir.",
+      source: "✦ terinspirasi dari <strong>HTS Tunangan</strong> — tentang perasaan yang tak terucap tapi terasa begitu keras"
+    },
+    {
+      text: "Tokoh dalam novel manapun yang baik juga pernah marah. Yang membedakan bukan ia tak pernah marah — tapi ia tahu bahwa amarah bukan tempat tinggal, melainkan tempat persinggahan.",
+      source: "✦ terinspirasi dari <strong>The Perfect Rival</strong> — tentang dua hati yang berbenturan"
+    },
+    {
+      text: "Kamu boleh marah. Kamu boleh diam. Kamu boleh tidak baik-baik saja. Tidak ada aturan yang mewajibkanmu selalu tenang — bahkan bintang pun meledak untuk memancarkan cahayanya.",
+      source: "✦ bisikan dari <strong>Agaskar</strong> — dari jiwa yang pernah membara"
+    },
+    {
+      text: "Api di dadamu itu bukan musuh. Ia adalah caramu merasakan bahwa ada hal yang penting bagimu. Dan sesuatu yang penting itu layak untuk diperjuangkan — termasuk kebahagiaanmu sendiri.",
+      source: "✦ terinspirasi dari <strong>Jetik Mahessa</strong> — ketika rasa tak lagi bisa ditahan"
+    },
+    {
+      text: "Bahkan tokoh di novel paling romantis pun pernah menghentakkan kaki dan berteriak dalam diam. Kamu tidak sendirian — perasaanmu sah, dan kamu akan melewatinya.",
+      source: "✦ dari halaman yang belum kamu tulis tapi sudah dirasakan"
+    },
+    {
+      text: "Marahmu hari ini bukan tentang siapa kamu — ini tentang apa yang kamu alami. Besok, versi kamu yang lebih tenang akan bangkit. Dan ia akan lebih kuat dari sebelumnya.",
+      source: "✦ terinspirasi dari <strong>Malioboro at Midnight</strong> — malam yang panjang selalu berakhir"
+    },
+    {
+      text: "Izinkan amarahmu dirasakan sepenuhnya, tanpa batas waktu yang dipaksakan. Tapi ingat — kamu terlalu berharga untuk membiarkan amarah menjadi penghuni tetap di dalam hatimu.",
+      source: "✦ dari <strong>Hello Cello</strong> — surat untuk jiwa yang terlalu lama menyimpan semuanya sendiri"
+    },
+    {
+      text: "Di Malioboro, bahkan malam yang paling berisik pun akhirnya menjadi tenang saat fajar tiba. Amarahmu, seperti malam itu — akan menemukan ketenangannya sendiri.",
+      source: "✦ terinspirasi dari <strong>Malioboro at Midnight</strong> — Brian Khrisna"
+    }
+  ],
+  bahagia: [
+    {
+      text: "Wajahmu saat bahagia adalah halaman pertama dari novel terbaik yang pernah ada — penuh kemungkinan, harum seperti buku baru, dan membuat siapapun ingin terus membaca.",
+      source: "✦ untuk Dina, dari tokoh yang selalu mengagumimu dari kejauhan"
+    },
+    {
+      text: "Simpan momen ini baik-baik, Dina. Lipat ia seperti bookmark di halaman favoritmu — untuk nanti, ketika kamu butuh pengingat bahwa hari-hari indah itu nyata dan memang pernah ada.",
+      source: "✦ terinspirasi dari <strong>Hello (Again), Cello</strong> — tentang hal indah yang kembali lagi"
+    },
+    {
+      text: "Kebahagiaanmu hari ini adalah bukti bahwa semua sore panjangmu, semua halaman yang kamu baca sendirian — semuanya mengarah ke momen ini. Ini milikmu.",
+      source: "✦ dari <strong>HTS Tunangan</strong> — ketika yang tak terduga menjadi yang paling berarti"
+    },
+    {
+      text: "Tertawa lepas. Menatap langit dengan mata berkilau. Ini Dina yang paling cantik — bukan karena apa yang dipakai, tapi karena cahaya yang keluar dari dalam dirinya.",
+      source: "✦ bisikan dari semesta yang memperhatikanmu"
+    },
+    {
+      text: "Di Malioboro, ada seseorang yang tersenyum setiap kali namamu disebut. Di manapun kamu berada hari ini — tersenyumlah lebih lebar. Kamu pantas mendapatkannya.",
+      source: "✦ terinspirasi dari <strong>Malioboro at Midnight</strong> — Brian Khrisna"
+    },
+    {
+      text: "Kebahagiaanmu bukan kebetulan. Ia adalah hasil dari hatimu yang terus memilih untuk percaya — bahkan di hari-hari ketika percaya itu terasa sangat berat.",
+      source: "✦ dari <strong>Seporsi Mie Ayam Sebelum Mati</strong> — tentang menemukan keajaiban dalam hal-hal kecil"
+    },
+    {
+      text: "Ada keajaiban dalam cara matamu berbinar ketika menemukan cerita yang kamu cintai. Kamu sendiri adalah cerita yang indah, Dina — dan bab terbaikmu belum ditulis.",
+      source: "✦ terinspirasi dari <strong>Jetik Mahessa</strong> — kisah yang diam-diam memukau"
+    },
+    {
+      text: "Hari ini kamu bahagia — dan itu sudah lebih dari cukup. Tidak perlu alasan besar. Tidak perlu pembenaran. Bahagia saja. Kamu layak.",
+      source: "✦ dari tokoh favoritmu yang selalu tahu caramu tersenyum"
+    }
+  ],
+  sedih: [
+    {
+      text: "Tangismu bukan kelemahan, Dina. Ia adalah caramu merasakan segalanya dengan sangat penuh — dan hanya jiwa yang besar yang mampu menampung rasa sebesar itu.",
+      source: "✦ terinspirasi dari <strong>Hello Cello</strong> — saat rasa tak bisa lagi ditahan"
+    },
+    {
+      text: "Bahkan malam di Malioboro yang paling sepi sekalipun selalu menyimpan sesuatu yang indah di baliknya. Kesedihanmu hari ini adalah bagian dari cerita yang belum selesai ditulis.",
+      source: "✦ terinspirasi dari <strong>Malioboro at Midnight</strong> — Brian Khrisna"
+    },
+    {
+      text: "Biarkan air matamu jatuh tanpa rasa malu. Di antara setiap tetesnya tersimpan doa yang tidak perlu kata — dan semesta mendengarnya dengan sangat jelas.",
+      source: "✦ dari <strong>Seporsi Mie Ayam Sebelum Mati</strong> — tentang perasaan yang lebih besar dari kata-kata"
+    },
+    {
+      text: "Malam ini terasa sangat panjang, aku tahu. Tapi di novel terfavoritmu — bahkan di bagian yang paling gelap sekalipun — selalu ada fajar yang menunggu di halaman berikutnya.",
+      source: "✦ dari <strong>Agaskar</strong> — untuk jiwa yang kelelahan berjuang"
+    },
+    {
+      text: "Kesedihanmu adalah bukti bahwa kamu pernah mencintai dengan berani. Dan keberanian seperti itu — tidak banyak yang memilikinya, Dina.",
+      source: "✦ terinspirasi dari <strong>HTS Tunangan</strong> — tentang hati yang tak bisa setengah-setengah"
+    },
+    {
+      text: "Penyembuhan itu bukan balapan. Tidak ada garis finish, tidak ada podium. Izinkan dirimu berduka selama yang kamu butuhkan — hatimu yang tahu kapan waktunya bangkit.",
+      source: "✦ bisikan dari <strong>Jetik Mahessa</strong> — tentang waktu yang menyembuhkan diam-diam"
+    },
+    {
+      text: "Kamu tidak perlu terlihat baik-baik saja malam ini. Peluk dirimu sendiri — persis seperti caramu memeluk buku yang ceritanya menyentuh hatimu terlalu dalam.",
+      source: "✦ dari <strong>Hello (Again), Cello</strong> — tentang pulang pada diri sendiri"
+    },
+    {
+      text: "Ada sesuatu yang sangat manusiawi dalam cara kamu bersedih, Dina. Kamu merasakannya dengan tulus — dan itu, meskipun terasa berat, adalah sesuatu yang indah.",
+      source: "✦ terinspirasi dari <strong>The Perfect Rival</strong> — tentang menjadi rapuh di tempat yang aman"
+    }
+  ],
+  capek: [
+    {
+      text: "Letakkan dulu bebanmu, Dina. Malam ini bukan milik produktivitas — malam ini milikmu. Untuk istirahat, untuk napas panjang, untuk sekadar ada tanpa harus menghasilkan apapun.",
+      source: "✦ terinspirasi dari <strong>Seporsi Mie Ayam Sebelum Mati</strong> — tentang menemukan jeda di tengah keramaian"
+    },
+    {
+      text: "Capekmu adalah bukti bahwa kamu telah berjuang. Dan pejuang yang paling bijak tahu kapan harus berhenti sebentar — bukan karena menyerah, tapi karena menghargai dirinya sendiri.",
+      source: "✦ dari <strong>The Perfect Rival</strong> — ketika bertahan pun butuh keberanian"
+    },
+    {
+      text: "Tidak ada novel yang bagus yang ditulis tanpa jeda. Penulisnya juga istirahat — minum teh, melamun, mengintip langit. Kamu pun berhak melakukan hal yang sama.",
+      source: "✦ bisikan dari tokoh yang diam-diam menjagamu"
+    },
+    {
+      text: "Tubuhmu yang lelah adalah tubuh yang telah memberikan segalanya. Hormati ia — dengan istirahat, dengan hangat, dengan kelembutan yang sama seperti yang kamu berikan untuk orang lain.",
+      source: "✦ terinspirasi dari <strong>Hello Cello</strong> — tentang belajar merawat diri sendiri"
+    },
+    {
+      text: "Di Malioboro tengah malam, seorang tokoh duduk di trotoar dan membiarkan kakinya beristirahat. Kadang, berhenti sebentar adalah bagian dari perjalanannya yang paling penting.",
+      source: "✦ terinspirasi dari <strong>Malioboro at Midnight</strong> — Brian Khrisna"
+    },
+    {
+      text: "Ada kekuatan besar dalam mengucapkan 'aku butuh istirahat.' Kalimat itu bukan kekalahan — ia adalah kebijaksanaan yang hanya dimiliki jiwa yang cukup mengenal dirinya sendiri.",
+      source: "✦ dari <strong>Agaskar</strong> — untuk jiwa yang sudah terlalu lama tak minta tolong"
+    },
+    {
+      text: "Istirahatlah, Dina. Semua yang harus diselesaikan akan tetap ada besok — tapi kamu yang lelah ini hanya bisa dipulihkan oleh dirimu sendiri, dengan kelembutan yang kamu pantas dapatkan.",
+      source: "✦ terinspirasi dari <strong>Jetik Mahessa</strong> — tentang mencintai dalam diam termasuk mencintai diri"
+    },
+    {
+      text: "Kamu tidak harus kuat setiap saat. Hari ini, biarkan capekmu menjadi alasan yang sah untuk berbaring, menutup mata, dan membiarkan dunia berjalan sendiri sejenak.",
+      source: "✦ dari <strong>Hello (Again), Cello</strong> — untuk jiwa yang butuh diizinkan berhenti"
+    }
+  ]
+};
+
+// ===== MOOD CONFIG =====
+const moodConfig = {
+  marah: {
+    label: "untuk jiwa yang sedang membara",
+    icon: "🔴",
+    accent: "#e05a8a",
+    gradient: "linear-gradient(90deg, #e05a8a, #e87830)",
+    particleColors: ["#f0a0c0","#e05a8a","#e87830","#ff80a0","#ffc0a0"],
+    words: ["rasa","marah","kuat","api","berani","bertahan","hati","nyata"]
+  },
+  bahagia: {
+    label: "untuk jiwa yang bersinar hari ini",
+    icon: "💛",
+    accent: "#d4a843",
+    gradient: "linear-gradient(90deg, #d4a843, #e05a8a)",
+    particleColors: ["#f8d870","#d4a843","#f0a0c0","#fff080","#ffd080"],
+    words: ["sinar","senyum","cinta","bunga","tawa","indah","binar","harapan"]
+  },
+  sedih: {
+    label: "untuk jiwa yang menangis dalam diam",
+    icon: "💙",
+    accent: "#5b9bd5",
+    gradient: "linear-gradient(90deg, #5b9bd5, #7c5cbf)",
+    particleColors: ["#90c0e8","#5b9bd5","#a8cce8","#7c5cbf","#b8a0e0"],
+    words: ["rasa","tangis","malam","bintang","doa","pulih","lembut","aman"]
+  },
+  capek: {
+    label: "untuk jiwa yang butuh istirahat",
+    icon: "🤍",
+    accent: "#7c5cbf",
+    gradient: "linear-gradient(90deg, #7c5cbf, #5b9bd5)",
+    particleColors: ["#c8b8f0","#7c5cbf","#9878d8","#b8a0e0","#a8cce8"],
+    words: ["istirahat","hangat","tenang","lembut","aman","napas","jeda","pulih"]
+  }
+};
+
+// ===== STATE =====
+let currentMood = null;
+let usedIndices = {};
+
+// ===== OPEN JAR =====
+function openJar(mood, event) {
+  currentMood = mood;
+  const cfg = moodConfig[mood];
+
+  // Visual effects
+  createSparkles(event.clientX, event.clientY, cfg.particleColors);
+  spawnFloatWords(mood, event.clientX, event.clientY);
+  createParticles(mood);
+  createRibbon(cfg.gradient);
+
+  // Body theme
+  document.body.className = 'mood-' + mood;
+
+  // Card styling
+  document.getElementById('card-accent').style.background = cfg.gradient;
+  document.getElementById('card-deco').style.color = cfg.accent;
+  document.getElementById('card-mood-tag').style.background = cfg.accent;
+  document.getElementById('mood-tag-icon').textContent = cfg.icon;
+  document.getElementById('mood-tag-text').textContent = cfg.label;
+  document.getElementById('btn-next').style.background = cfg.accent;
+  document.documentElement.style.setProperty('--mood-accent', cfg.accent);
+
+  // Show message
+  showMessage(mood, false);
+
+  // Open overlay
+  document.getElementById('message-overlay').classList.add('active');
+}
+
+// ===== SHOW MESSAGE =====
+function showMessage(mood, animate = true) {
+  const pool = messages[mood];
+  if (!usedIndices[mood]) usedIndices[mood] = [];
+  let available = pool.map((_,i) => i).filter(i => !usedIndices[mood].includes(i));
+  if (available.length === 0) { usedIndices[mood] = []; available = pool.map((_,i) => i); }
+
+  const idx = available[Math.floor(Math.random() * available.length)];
+  usedIndices[mood].push(idx);
+  const msg = pool[idx];
+
+  const textEl = document.getElementById('msg-text');
+  const srcEl = document.getElementById('msg-source');
+
+  if (animate) {
+    textEl.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    textEl.style.opacity = '0';
+    textEl.style.transform = 'translateY(-8px)';
+    setTimeout(() => {
+      textEl.innerHTML = msg.text;
+      srcEl.innerHTML = msg.source;
+      textEl.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      textEl.style.opacity = '1';
+      textEl.style.transform = 'translateY(0)';
+    }, 320);
+  } else {
+    textEl.style.opacity = '1';
+    textEl.style.transform = 'translateY(0)';
+    textEl.innerHTML = msg.text;
+    srcEl.innerHTML = msg.source;
+  }
+}
+
+// ===== NEXT MESSAGE =====
+function nextMessage() {
+  if (!currentMood) return;
+  showMessage(currentMood, true);
+  createParticles(currentMood, true);
+}
+
+// ===== CLOSE =====
+function closeOverlay() {
+  document.getElementById('message-overlay').classList.remove('active');
+  setTimeout(() => { document.body.className = ''; }, 1000);
+}
+
+// ===== SPARKLES =====
+function createSparkles(x, y, colors) {
+  const symbols = ['✦','✧','♥','★','✿','◇','✽'];
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    const angle = (i / 18) * Math.PI * 2 + Math.random() * 0.3;
+    const dist = 30 + Math.random() * 90;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const isSymbol = Math.random() > 0.5;
+
+    if (isSymbol) {
+      s.className = 'sparkle sparkle-star';
+      s.style.color = color;
+      s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      s.style.fontSize = (8 + Math.random() * 8) + 'px';
+    } else {
+      const size = 3 + Math.random() * 6;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.background = color;
+      s.style.borderRadius = '50%';
+    }
+
+    s.style.left = x + 'px';
+    s.style.top = y + 'px';
+    s.style.setProperty('--tx', Math.cos(angle)*dist + 'px');
+    s.style.setProperty('--ty', Math.sin(angle)*dist + 'px');
+    s.style.animationDuration = (0.6 + Math.random() * 0.6) + 's';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1200);
+  }
+}
+
+// ===== FLOAT WORDS =====
+function spawnFloatWords(mood, x, y) {
+  const words = moodConfig[mood].words;
+  const shuffled = words.sort(() => Math.random() - 0.5);
+  shuffled.slice(0, 5).forEach((word, i) => {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'float-word';
+      el.textContent = word;
+      el.style.left = (x - 30 + Math.random() * 100 - 50) + 'px';
+      el.style.top = (y + Math.random() * 20 - 10) + 'px';
+      el.style.color = moodConfig[mood].accent;
+      el.style.animationDuration = (2.5 + Math.random()) + 's';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 4000);
+    }, i * 120);
+  });
+}
+
+// ===== PARTICLES =====
+function createParticles(mood, mini = false) {
+  const container = document.getElementById('particles');
+  const colors = moodConfig[mood].particleColors;
+  const count = mini ? 10 : 24;
+
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = 3 + Math.random() * 7;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = (5 + Math.random() * 90) + '%';
+      p.style.top = (50 + Math.random() * 45) + '%';
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      p.style.setProperty('--dur', (2 + Math.random() * 3) + 's');
+      p.style.animationDelay = (Math.random() * 0.5) + 's';
+      p.style.borderRadius = Math.random() > 0.3 ? '50%' : '2px';
+      container.appendChild(p);
+      setTimeout(() => p.remove(), 5500);
+    }, i * 70);
+  }
+}
+
+// ===== RIBBON =====
+function createRibbon(gradient) {
+  const r = document.createElement('div');
+  r.className = 'ribbon';
+  r.style.background = gradient;
+  r.style.height = '2px';
+  document.body.appendChild(r);
+  setTimeout(() => r.remove(), 1500);
+}
+
+// ===== BOKEH BACKGROUND =====
+function initBokeh() {
+  const container = document.getElementById('bokehContainer');
+  const bokehColors = [
+    'rgba(91,155,213,VAL)', 'rgba(224,90,138,VAL)',
+    'rgba(124,92,191,VAL)', 'rgba(212,168,67,VAL)',
+    'rgba(168,200,240,VAL)', 'rgba(240,160,192,VAL)'
+  ];
+
+  for (let i = 0; i < 14; i++) {
+    const b = document.createElement('div');
+    b.className = 'bokeh';
+    const size = 40 + Math.random() * 120;
+    const op = (0.06 + Math.random() * 0.12).toFixed(2);
+    const color = bokehColors[Math.floor(Math.random() * bokehColors.length)].replace('VAL', op);
+    b.style.width = size + 'px';
+    b.style.height = size + 'px';
+    b.style.background = color;
+    b.style.left = (Math.random() * 100) + '%';
+    b.style.top = (Math.random() * 100) + '%';
+    b.style.setProperty('--dur', (8 + Math.random() * 12) + 's');
+    b.style.setProperty('--delay', (-Math.random() * 12) + 's');
+    b.style.setProperty('--op', op);
+    b.style.filter = 'blur(' + (15 + Math.random() * 20) + 'px)';
+    container.appendChild(b);
+  }
+}
+
+// ===== JAR HOVER SPARKLES =====
+document.querySelectorAll('.jar-wrapper').forEach(jar => {
+  jar.addEventListener('mouseenter', () => {
+    const rect = jar.getBoundingClientRect();
+    const mood = jar.classList[1].replace('jar-', '');
+    if (!moodConfig[mood]) return;
+    const colors = moodConfig[mood].particleColors;
+    for (let i = 0; i < 6; i++) {
+      setTimeout(() => {
+        const s = document.createElement('div');
+        s.className = 'sparkle';
+        s.style.left = (rect.left + Math.random() * rect.width) + 'px';
+        s.style.top = (rect.top + rect.height * 0.2 + Math.random() * rect.height * 0.4) + 'px';
+        s.style.background = colors[Math.floor(Math.random() * colors.length)];
+        s.style.width = '4px'; s.style.height = '4px';
+        const angle = Math.random() * Math.PI * 2;
+        s.style.setProperty('--tx', Math.cos(angle) * 25 + 'px');
+        s.style.setProperty('--ty', Math.sin(angle) * 25 + 'px');
+        s.style.animationDuration = '0.7s';
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 700);
+      }, i * 90);
+    }
+  });
+});
+
+// ===== MUSIC PLAYER — simpel =====
+const audio = document.getElementById('bg-audio');
+const fab   = document.getElementById('music-fab');
+const tooltip = document.getElementById('music-tooltip');
+const volSlider = document.getElementById('vol-slider');
+const volIcon   = document.getElementById('vol-icon');
+
+let isPlaying = false;
+let isMuted = false;
+let lastVol = 0.7;
+let tooltipTimer = null;
+
+// Set initial volume
+audio.volume = 0.7;
+
+function togglePlay() {
+  if (isPlaying) {
+    audio.pause();
+    isPlaying = false;
+    fab.classList.remove('playing');
+  } else {
+    audio.play().catch(() => {});
+    isPlaying = true;
+    fab.classList.add('playing');
+  }
+  showTooltip();
+}
+
+function setVolume(val) {
+  const v = val / 100;
+  audio.volume = v;
+  lastVol = v;
+  isMuted = v === 0;
+  updateVolIcon(v);
+}
+
+function toggleMute() {
+  if (isMuted) {
+    audio.volume = lastVol || 0.7;
+    volSlider.value = (lastVol || 0.7) * 100;
+    isMuted = false;
+    updateVolIcon(lastVol || 0.7);
+  } else {
+    lastVol = audio.volume;
+    audio.volume = 0;
+    volSlider.value = 0;
+    isMuted = true;
+    updateVolIcon(0);
+  }
+}
+
+function updateVolIcon(v) {
+  volIcon.textContent = v === 0 ? '🔇' : v < 0.4 ? '🔉' : '🔊';
+}
+
+// Hover tooltip
+fab.addEventListener('mouseenter', showTooltip);
+fab.addEventListener('mouseleave', () => {
+  tooltipTimer = setTimeout(() => tooltip.classList.remove('visible'), 1800);
+});
+tooltip.addEventListener('mouseenter', () => clearTimeout(tooltipTimer));
+tooltip.addEventListener('mouseleave', () => {
+  tooltipTimer = setTimeout(() => tooltip.classList.remove('visible'), 800);
+});
+
+function showTooltip() {
+  clearTimeout(tooltipTimer);
+  tooltip.classList.add('visible');
+  tooltipTimer = setTimeout(() => tooltip.classList.remove('visible'), 3000);
+}
+
+// Keyboard shortcut: M = toggle musik
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeOverlay();
+  if (e.key.toLowerCase() === 'm' && e.target.tagName !== 'INPUT') togglePlay();
+  if (e.key === 'Enter' && currentMood && document.getElementById('message-overlay').classList.contains('active')) {
+    nextMessage();
+  }
+});
+
+// ===== INIT =====
+initBokeh();
+</script>
+</body>
+</html>
